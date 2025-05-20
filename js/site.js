@@ -1,36 +1,21 @@
-/* we can use a single css file to style all the files in our wwebsite */
+// index.js - purpose and description here
+// Author: Your Name
+// Date:
 
-/* you can pick your own background colors, text colors, and fonts */
+// Constants
 
-/* we can select an html element tag, in this case "body" will apply to the whole document */
-body {
-  background-color: #d3aefc;
+// Functions
+
+// this is an example function and this comment tells what it doees and what parameters are passed to it.
+function myFunction(param1, param2) {
+  // some code here
+  // return results;
 }
 
-/* we can have rules apply to multiple elements at the same time with commas */
-h1,h2,h3 {
-  font-family: sans-serif;
+function main() {
+  console.log("Main function started.");
+  // the code that makes everything happen
 }
 
-/* and we can have rules that overlap other rules, both take effect */
-h1 {
-  letter-spacing: 5px;
-  word-spacing: 5px;
-  font-size: 200%;
-}
-
-/* the hashtag in a CSS selector selects an element by id, e.g., id="content" */
-#content {
-  margin: 10px;
-  padding: 10px;
-  border: solid 1px #623296;
-  background-color: #a4c8e4;
-}
-
-/* the period in a CSS selector selects an element by class, e.g., class="minor-section" */
-.minor-section {
-  padding: 10px;
-  margin-bottom: 10px;
-  border: solid 1px #6473e9;
-  background-color: #7d5bc6;
-}
+// let's get this party started
+main();
