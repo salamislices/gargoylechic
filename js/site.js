@@ -4,7 +4,7 @@
 
 $(function() {
   $("#make-convo").click(function(){
-    const strings = ["I love you!", "Hey sweet thing", "Ur so sweet", "I miss u!", "mwuah"];
+    const strings = ["I love you!", "loveeeeee <3", "Mi amor!", "I miss u!", "mwuah", "xoxoxoxoxoxo"];
     const newText = strings[Math.floor(Math.random() * strings.length)];
 
     $("#output").find(".text").remove();
