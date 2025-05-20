@@ -1,4 +1,4 @@
-// index.js - purpose and description here
+// site.js - purpose and description here
 // Author: Your Name
 // Date:
 
