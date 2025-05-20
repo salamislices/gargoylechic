@@ -34,3 +34,15 @@ h1 {
   border: solid 1px #dd7525;
   background-color: #e37171;
 }
+
+.text p {
+  display: inline-block;
+  max-width: 60%;
+  margin: 3px;
+  padding: 5px 10px;
+  border-radius: 15px;
+  background-color: rgb(87, 190, 255);
+  color: rgb(0, 0, 0);
+  font-family: sans-serif;
+  font-size: 0.8em;
+}
