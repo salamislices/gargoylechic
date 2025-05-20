@@ -24,7 +24,7 @@ h1 {
   margin: 10px;
   padding: 10px;
   border: solid 1px #bf2e3f;
-  background-color: #a4c8e4;
+  background-color: #d76610;
 }
 
 /* the period in a CSS selector selects an element by class, e.g., class="minor-section" */
@@ -32,5 +32,5 @@ h1 {
   padding: 10px;
   margin-bottom: 10px;
   border: solid 1px #dd7525;
-  background-color: #8f0b0b;
+  background-color: #c93cc5;
 }
