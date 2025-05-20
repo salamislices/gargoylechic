@@ -1,41 +1,37 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<!-- This title is used for tabs and bookmarks -->
-	<title>Sophia's Web!</title>
+  <title>Sophia's Web!</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-	<!-- Use UTF character set, a good idea with any webpage -->
-	<meta charset="UTF-8" />
-	<!-- Set viewport so page remains consistently scaled w narrow devices -->
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" type="text/css" href="css/site.css">
+  <link rel="stylesheet" type="text/css" href="css/homepage.css">
 
-	<!-- Include a sitewide CSS file for consistent styling across the site -->
-	<link rel="stylesheet" type="text/css" href="css/site.css">
-	<!-- Lab-specifc CSS file for any special styling of this particular page -->
-	<link rel="stylesheet" type="text/css" href="css/homepage.css">
-    <style>
-    h1 {text-align: center;}
-    p {text-align: center;}
-    div {text-align: center;}
-</style>    
-	<!-- Link to javascript file - DEFER waits until all elements are rendered -->
+  <style>
+    h1 { text-align: center; }
+    p { text-align: center; }
+    div { text-align: center; }
+  </style>
 
-	<!-- <script type="text/javascript" src="./js/lab.js" DEFER></script> -->
+  <!-- Load jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-	<!-- Style this page by changing the CSS in ../css/site.css or css/lab.css -->
-	<main id="content">
-		<section>
-			<h1>♥-HEY SWEET THING-♥</h1>
-			<div class="minor-section">
-					<!-- Note that all filenames use lowercase and no spaces -->
-					<img class="selfie" src="./img/sophiaselfie.jpg" width="300" alt="Selfie of Sophia">
-			</div>
-            <h1>♥-I LOVE YOU!-♥</h1>
-            <button id="make-convo">click!</button>
-		</section>
-		<nav id="links">
-		</nav>
-	</main>
+  <main id="content">
+    <section>
+      <h1>♥-HEY SWEET THING-♥</h1>
+      <div class="minor-section">
+        <img class="selfie" src="./img/sophiaselfie.jpg" width="300" alt="Selfie of Sophia">
+      </div>
+      <h1>♥-I LOVE YOU!-♥</h1>
+      <button id="make-convo">click!</button>
+      <div id="output"></div>
+    </section>
+    <nav id="links"></nav>
+  </main>
+
+  <!-- Load your script -->
+  <script src="index.js"></script>
 </body>
 </html>
