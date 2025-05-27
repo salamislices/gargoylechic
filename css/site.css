@@ -1,55 +1,140 @@
-/* we can use a single css file to style all the files in our wwebsite */
-
-/* you can pick your own background colors, text colors, and fonts */
-
-/* we can select an html element tag, in this case "body" will apply to the whole document */
+/* General page style */
 body {
   background-color: #5f0384;
-}
-
-/* we can have rules apply to multiple elements at the same time with commas */
-h1,h2,h3 {
+  margin: 0;
+  padding: 0;
   font-family: 'Gill Sans', sans-serif;
+  color: white;
+  text-align: center;
 }
 
-/* and we can have rules that overlap other rules, both take effect */
-h1 {
-  letter-spacing: 5px;
+h1, h2, h3 {
+  letter-spacing: 3px;
   word-spacing: 5px;
-  font-size: 200%;
+  margin-bottom: 10px;
 }
 
-/* the hashtag in a CSS selector selects an element by id, e.g., id="content" */
 #content {
-  margin: 10px;
-  padding: 10px;
+  margin: 10px auto;
+  padding: 20px;
+  max-width: 800px;
   border: solid 1px #bf2e3f;
   background-color: #8247af;
+  border-radius: 15px;
+  box-shadow: 0 0 10px #bf2e3f;
 }
 
-/* the period in a CSS selector selects an element by class, e.g., class="minor-section" */
 .minor-section {
   padding: 10px;
   margin-bottom: 10px;
   border: solid 1px #ab1616;
   background-color: #e37171;
+  border-radius: 10px;
 }
 
+.minor-section img.selfie {
+  border-radius: 15px;
+  box-shadow: 0 0 15px #ff00ff;
+}
+
+a {
+  color: #ffd1ff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* Conversation output text */
 .text p {
   display: inline-block;
   max-width: 60%;
-  margin: 3px;
+  margin: 3px auto;
   padding: 5px 10px;
   border-radius: 15px;
   background-color: rgb(87, 190, 255);
   color: rgb(0, 0, 0);
   font-family: sans-serif;
-  font-size: 0.8em;
+  font-size: 0.9em;
 }
 
-#paintCanvas {
-  border: 2px solid white;
-  background-color: #fff;
-  margin-top: 10px;
-  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+/* Buttons style */
+button {
+  background-color: #c43885;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  margin: 12px 6px;
+  border-radius: 12px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #a52564;
+}
+
+/* Drawing section styles */
+.drawing-section {
+  margin-top: 30px;
+  padding: 15px;
+  background-color: #9b48d0;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #c145d8;
+}
+
+#drawCanvas {
+  background-color: white;
+  border: 2px solid #822fa0;
+  cursor: crosshair;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Block Blast Game styles */
+.blockblast-section {
+  margin-top: 40px;
+  padding: 15px;
+  background-color: #e84545;
+  border-radius: 15px;
+  box-shadow: 0 0 15px #ff6b6b;
+  color: white;
+}
+
+#blockBlastGrid {
+  display: grid;
+  grid-template-columns: repeat(10, 30px);
+  grid-template-rows: repeat(10, 30px);
+  gap: 3px;
+  justify-content: center;
+  margin: 20px auto;
+  width: max-content;
+}
+
+.block-cell {
+  width: 30px;
+  height: 30px;
+  background-color: #320026;
+  border-radius: 6px;
+  box-shadow: inset 0 0 5px #58004a;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.block-cell.filled {
+  background-color: #3dff7f;
+  box-shadow: 0 0 8px #0f9d58;
+}
+
+.game-controls {
+  margin-bottom: 10px;
+}
+
+#score {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #d4ffae;
 }

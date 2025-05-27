@@ -12,53 +12,6 @@
     h1 { text-align: center; }
     p { text-align: center; }
     div { text-align: center; }
-    #paintCanvas {
-      border: 2px solid white;
-      background-color: white;
-      margin-top: 10px;
-      box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
-      cursor: crosshair;
-    }
-    .controls {
-      margin-top: 10px;
-    }
-    label, select, input[type=range] {
-      margin: 5px;
-      font-family: sans-serif;
-    }
-    #block-blast {
-      margin-top: 20px;
-    }
-    #game-board {
-      display: grid;
-      grid-template-columns: repeat(10, 30px);
-      grid-template-rows: repeat(10, 30px);
-      gap: 2px;
-      margin: 0 auto;
-      width: max-content;
-      background-color: #222;
-      padding: 10px;
-      border-radius: 10px;
-    }
-    .cell {
-      width: 30px;
-      height: 30px;
-      background-color: #444;
-      border-radius: 4px;
-    }
-    .filled {
-      background-color: #f06292;
-    }
-    #score {
-      font-family: sans-serif;
-      font-size: 1.2em;
-      margin: 10px;
-    }
-    .block-controls button {
-      margin: 5px;
-      padding: 5px 10px;
-      font-size: 1em;
-    }
   </style>
 
   <!-- Load jQuery -->
@@ -70,137 +23,39 @@
       <h1>HEY SWEET THING</h1>
       <div class="minor-section">
         <img class="selfie" src="./img/sophiaselfie.jpg" width="300" alt="Selfie of Sophia">
-        <a href="https://open.spotify.com/track/7vVywc6HuOtPzwdMkSxhI2?si=6ea0e27d36654002" target="_blank">SONG</a>
+        <br />
+        <a href="https://open.spotify.com/track/7vVywc6HuOtPzwdMkSxhI2?si=6ea0e27d36654002" target="_blank">PLAY OUR SONG</a>
       </div>
       <h1>I LOVE YOU!</h1>
-      <button id="make-convo">keep clicking me</button>
+      <button id="make-convo">Keep clicking me</button>
       <div id="output"></div>
-
-      <div class="minor-section">
-        <h2>Draw Something!</h2>
-        <canvas id="paintCanvas" width="600" height="400"></canvas><br>
-        <div class="controls">
-          <label for="colorPicker">🎨 Color: </label>
-          <input type="color" id="colorPicker" value="#ff3399">
-
-          <label for="brushSize">🖌️ Size: </label>
-          <input type="range" id="brushSize" min="1" max="30" value="5">
-
-          <button onclick="clearCanvas()">Clear Canvas</button>
-        </div>
-      </div>
-
-      <div class="minor-section" id="block-blast">
-        <h2>Block Blast</h2>
-        <div id="score">Score: 0</div>
-        <div id="game-board"></div>
-        <div class="block-controls">
-          <button onclick="placeRandomBlock()">Place Random Block</button>
-          <button onclick="resetBoard()">Reset</button>
-        </div>
-      </div>
     </section>
+
+    <section class="drawing-section">
+      <h2>Draw Something</h2>
+      <canvas id="drawCanvas" width="600" height="400"></canvas>
+      <br />
+      <label for="colorPicker">Brush Color: </label>
+      <input type="color" id="colorPicker" value="#5700ff" />
+      <label for="brushSize">Brush Size: </label>
+      <input type="range" id="brushSize" min="1" max="30" value="5" />
+      <button id="clearCanvasBtn">Clear Canvas</button>
+    </section>
+
+    <section class="blockblast-section">
+      <h2>Block Blast Game</h2>
+      <div id="blockBlastGrid"></div>
+      <div class="game-controls">
+        <button id="randomBlockBtn">Place Random Block</button>
+        <button id="resetGridBtn">Reset Game</button>
+      </div>
+      <h3>Score: <span id="score">0</span></h3>
+    </section>
+
     <nav id="links"></nav>
   </main>
 
+  <!-- Load your script -->
   <script src="js/site.js"></script>
-
-  <script>
-    // Paint Canvas Script
-    const canvas = document.getElementById('paintCanvas');
-    const ctx = canvas.getContext('2d');
-    let painting = false;
-
-    const colorPicker = document.getElementById('colorPicker');
-    const brushSize = document.getElementById('brushSize');
-
-    function startPosition(e) {
-      painting = true;
-      draw(e);
-    }
-
-    function endPosition() {
-      painting = false;
-      ctx.beginPath();
-    }
-
-    function draw(e) {
-      if (!painting) return;
-      ctx.lineWidth = brushSize.value;
-      ctx.lineCap = 'round';
-      ctx.strokeStyle = colorPicker.value;
-      const rect = canvas.getBoundingClientRect();
-      ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
-      ctx.stroke();
-      ctx.beginPath();
-      ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
-    }
-
-    function clearCanvas() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    }
-
-    canvas.addEventListener('mousedown', startPosition);
-    canvas.addEventListener('mouseup', endPosition);
-    canvas.addEventListener('mousemove', draw);
-    window.clearCanvas = clearCanvas;
-
-    // Mini Block Blast Game
-    const board = document.getElementById('game-board');
-    let cells = [];
-    let score = 0;
-
-    function initBoard() {
-      board.innerHTML = '';
-      cells = [];
-      for (let i = 0; i < 100; i++) {
-        const div = document.createElement('div');
-        div.classList.add('cell');
-        board.appendChild(div);
-        cells.push(div);
-      }
-    }
-
-    function placeRandomBlock() {
-      let placed = false;
-      let attempts = 0;
-      while (!placed && attempts < 50) {
-        let index = Math.floor(Math.random() * 100);
-        if (!cells[index].classList.contains('filled')) {
-          cells[index].classList.add('filled');
-          placed = true;
-          checkForLineClear();
-        }
-        attempts++;
-      }
-    }
-
-    function checkForLineClear() {
-      for (let row = 0; row < 10; row++) {
-        let filledRow = true;
-        for (let col = 0; col < 10; col++) {
-          if (!cells[row * 10 + col].classList.contains('filled')) {
-            filledRow = false;
-            break;
-          }
-        }
-        if (filledRow) {
-          for (let col = 0; col < 10; col++) {
-            cells[row * 10 + col].classList.remove('filled');
-          }
-          score += 10;
-          document.getElementById('score').innerText = 'Score: ' + score;
-        }
-      }
-    }
-
-    function resetBoard() {
-      cells.forEach(cell => cell.classList.remove('filled'));
-      score = 0;
-      document.getElementById('score').innerText = 'Score: 0';
-    }
-
-    initBoard();
-  </script>
 </body>
 </html>
