@@ -1,28 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Sophia's Web!</title>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sophia's Web - Block Blast + Drawing</title>
 
-  <link rel="stylesheet" type="text/css" href="css/site.css">
-  <link rel="stylesheet" type="text/css" href="css/homepage.css">
-
-  <style>
-    h1 { text-align: center; }
-    p { text-align: center; }
-    div { text-align: center; }
-  </style>
-
-  <!-- Load jQuery -->
-  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <link rel="stylesheet" href="css/site.css" />
 </head>
 <body>
   <main id="content">
+
     <section>
       <h1>HEY SWEET THING</h1>
       <div class="minor-section">
-        <img class="selfie" src="./img/sophiaselfie.jpg" width="300" alt="Selfie of Sophia">
+        <img class="selfie" src="./img/sophiaselfie.jpg" width="300" alt="Sophia Selfie" />
         <br />
         <a href="https://open.spotify.com/track/7vVywc6HuOtPzwdMkSxhI2?si=6ea0e27d36654002" target="_blank">SONG</a>
       </div>
@@ -32,7 +23,7 @@
     </section>
 
     <section class="drawing-section">
-      <h2>Draw Something</h2>
+      <h2>Draw Something!</h2>
       <canvas id="drawCanvas" width="600" height="400"></canvas>
       <br />
       <label for="colorPicker">Brush Color: </label>
@@ -43,19 +34,24 @@
     </section>
 
     <section class="blockblast-section">
-      <h2>Block Blast Game</h2>
-      <div id="blockBlastGrid"></div>
-      <div class="game-controls">
-        <button id="randomBlockBtn">Place Random Block</button>
-        <button id="resetGridBtn">Reset Game</button>
+      <h2>Mini Block Blast Game</h2>
+      <div id="scoreContainer">
+        <div id="scoreHeart">
+          ❤️ <span id="score">0</span>
+        </div>
       </div>
-      <h3>Score: <span id="score">0</span></h3>
+      <div id="blockBlastGrid"></div>
+      <div id="nextBlocksContainer">
+        <h3>Next Blocks</h3>
+        <div id="nextBlocks"></div>
+      </div>
+      <button id="resetGridBtn">Reset Game</button>
+      <div id="gameOverMessage" style="display:none;">Game Over! No more moves.</div>
     </section>
 
-    <nav id="links"></nav>
   </main>
 
-  <!-- Load your script -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="js/site.js"></script>
 </body>
 </html>

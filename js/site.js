@@ -94,7 +94,7 @@ function createGrid() {
 // Toggle cell fill on click
 function toggleCell(cell) {
   cell.classList.toggle("filled");
-  checkFullRows();
+  checkFullLines();
 }
 
 // Place a random filled cell on the grid
@@ -103,13 +103,14 @@ function placeRandomBlock() {
   if (emptyCells.length === 0) return;
   const randomIndex = Math.floor(Math.random() * emptyCells.length);
   emptyCells[randomIndex].classList.add("filled");
-  checkFullRows();
+  checkFullLines();
 }
 
-// Check for any full rows and clear them
-function checkFullRows() {
-  let rowsCleared = 0;
+// Check for any full rows or columns and clear them
+function checkFullLines() {
+  let linesCleared = 0;
 
+  // Check rows
   for (let r = 0; r < ROWS; r++) {
     let fullRow = true;
     for (let c = 0; c < COLS; c++) {
@@ -120,17 +121,44 @@ function checkFullRows() {
       }
     }
     if (fullRow) {
-      // Clear the full row
       for (let c = 0; c < COLS; c++) {
         const index = r * COLS + c;
         gridContainer.children[index].classList.remove("filled");
       }
-      rowsCleared++;
+      linesCleared++;
     }
   }
 
-  if (rowsCleared > 0) {
-    score += rowsCleared * 10;
+  // Check columns
+  for (let c = 0; c < COLS; c++) {
+    let fullCol = true;
+    for (let r = 0; r < ROWS; r++) {
+      const index = r * COLS + c;
+      if (!gridContainer.children[index].classList.contains("filled")) {
+        fullCol = false;
+        break;
+      }
+    }
+    if (fullCol) {
+      for (let r = 0; r < ROWS; r++) {
+        const index = r * COLS + c;
+        gridContainer.children[index].classList.remove("filled");
+      }
+      linesCleared++;
+    }
+  }
+
+  if (linesCleared > 0) {
+    // Calculate score with combos
+    const comboPoints = [20,30,40,50,60,70,80,90,100];
+    let basePoints = linesCleared * 10;
+    let bonus = 0;
+    if (linesCleared <= comboPoints.length) {
+      bonus = comboPoints[linesCleared - 1];
+    } else {
+      bonus = comboPoints[comboPoints.length - 1];
+    }
+    score += basePoints + bonus;
     scoreDisplay.textContent = score;
   }
 }
@@ -142,7 +170,7 @@ function resetGrid() {
   scoreDisplay.textContent = score;
 }
 
-// Initialize the game
+// Initialize the game grid and score
 createGrid();
 
 randomBlockBtn.addEventListener("click", placeRandomBlock);
