@@ -28,11 +28,57 @@
       <h1>I LOVE YOU!</h1>
       <button id="make-convo">keep clicking me</button>
       <div id="output"></div>
+      <div class="minor-section">
+        <h2>🎨 Paint Something for Fun</h2>
+        <canvas id="paintCanvas" width="600" height="400"></canvas><br>
+        <button onclick="clearCanvas()">Clear Canvas</button>
+      </div>
     </section>
     <nav id="links"></nav>
   </main>
 
   <!-- Load your script -->
   <script src="js/site.js"></script>
+
+  <script>
+    // Paint App
+    const canvas = document.getElementById('paintCanvas');
+    if (canvas) {
+      const ctx = canvas.getContext('2d');
+      let painting = false;
+
+      function startPosition(e) {
+        painting = true;
+        draw(e);
+      }
+
+      function endPosition() {
+        painting = false;
+        ctx.beginPath();
+      }
+
+      function draw(e) {
+        if (!painting) return;
+        ctx.lineWidth = 5;
+        ctx.lineCap = 'round';
+        ctx.strokeStyle = '#ff3399';
+        const rect = canvas.getBoundingClientRect();
+        ctx.lineTo(e.clientX - rect.left, e.clientY - rect.top);
+        ctx.stroke();
+        ctx.beginPath();
+        ctx.moveTo(e.clientX - rect.left, e.clientY - rect.top);
+      }
+
+      function clearCanvas() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+
+      canvas.addEventListener('mousedown', startPosition);
+      canvas.addEventListener('mouseup', endPosition);
+      canvas.addEventListener('mousemove', draw);
+
+      window.clearCanvas = clearCanvas;
+    }
+  </script>
 </body>
 </html>
